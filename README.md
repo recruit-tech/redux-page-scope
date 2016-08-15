@@ -8,6 +8,22 @@ npm install --save redux-page-scope
 
 ## Usage
 
+### Installing Reducers
+
+```javascript
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import { pageScopeReducer } from 'redux-page-scope';
+
+const rootReducer = combineReducers({
+  routing: routerReducer,
+  page: pageScopeReducer(combineReducers({
+    // your reducers for page scope.
+  })),
+  ...
+});
+```
+
 ### Installing middlewares
 
 ```javascript
@@ -24,20 +40,4 @@ const store = createStore(
     pageScopeMiddleware()
   )
 );
-```
-
-### Installing Reducers
-
-```javascript
-import { combineReducers, createStore } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import { pageScopeReducer } from 'redux-page-scope';
-
-const store = createStore(combineReducers({
-  routing: routerReducer,
-  page: pageScopeReducer(combineReducers({
-    // your reducers for page scope.
-  })),
-  ...
-}), initialState);
 ```
