@@ -48,7 +48,7 @@ export default function pageScopeMiddleware(options) {
     const routing = getRoutingState(currentState);
     const currentKey = routing && routing.locationBeforeTransitions && routing.locationBeforeTransitions.key;
     const nextKey = action.payload.key;
-    if (currentKey === nextKey) {
+    if (!currentKey || currentKey === nextKey) {
       return result;
     }
 
