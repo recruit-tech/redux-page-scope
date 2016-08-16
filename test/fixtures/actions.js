@@ -7,12 +7,13 @@ export function add(value) {
   };
 }
 
-export function locationChange(action, key) {
+export function locationChange(action, key, pathname) {
   return {
     type: LOCATION_CHANGE,
     payload: {
       action,
       key,
+      pathname,
     },
   };
 }

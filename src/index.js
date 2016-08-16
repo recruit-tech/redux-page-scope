@@ -63,7 +63,7 @@ export default function pageScopeMiddleware(options) {
         break;
       case 'REPLACE':
         deleteCurrentPageState();
-        dispatchInit();
+        dispatchInit(routing.locationBeforeTransitions.pathname === action.payload.pathname);
         break;
     }
 
@@ -80,8 +80,10 @@ export default function pageScopeMiddleware(options) {
       storage && requestAnimationFrame(() => storage.del(currentKey));
     }
 
-    function dispatchInit() {
-      dispatch(init());
+    function dispatchInit(keepState) {
+      if (!keepState) {
+        dispatch(init());
+      }
     }
 
     function dispatchSet() {

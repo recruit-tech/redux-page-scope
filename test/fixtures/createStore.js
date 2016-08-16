@@ -31,6 +31,7 @@ export default function (initState) {
       locationBeforeTransitions: {
         key: '0',
         action: 'PUSH',
+        pathname: '/',
       },
     },
   }, applyMiddleware(
