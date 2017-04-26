@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { LOCATION_CHANGE } from 'react-router-redux';
 import createLruCache from 'lru-cache';
 import requestAnimationFrame from 'dom-helpers/util/requestAnimationFrame';
@@ -46,7 +47,9 @@ export default function pageScopeMiddleware(options) {
     const result = next(action); // eslint-disable-line callback-return
 
     const routing = getRoutingState(currentState);
-    const currentKey = routing && routing.locationBeforeTransitions && routing.locationBeforeTransitions.key;
+    const currentKey = routing
+      && routing.locationBeforeTransitions
+      && routing.locationBeforeTransitions.key;
     const nextKey = action.payload.key;
     if (!currentKey || currentKey === nextKey) {
       return result;
@@ -64,6 +67,8 @@ export default function pageScopeMiddleware(options) {
       case 'REPLACE':
         deleteCurrentPageState();
         dispatchInit(routing.locationBeforeTransitions.pathname === action.payload.pathname);
+        break;
+      default:
         break;
     }
 
@@ -130,12 +135,14 @@ function createSessionStorage() {
       try {
         window.sessionStorage.setItem(prefix + key, JSON.stringify(value));
       } catch (ignore) {
+        // empty
       }
     },
     del(key) {
       try {
         window.sessionStorage.removeItem(prefix + key);
       } catch (ignore) {
+        // empty
       }
     },
   };

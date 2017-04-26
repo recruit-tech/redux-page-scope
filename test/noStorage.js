@@ -1,6 +1,5 @@
 import { add, locationChange } from './fixtures/actions';
-import { default as test, assertCounter } from './_helpers';
-import assert from 'assert';
+import test, { assertCounter } from './_helpers';
 
 test('initial state after push', [
   add(1),

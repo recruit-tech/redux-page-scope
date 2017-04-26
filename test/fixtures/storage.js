@@ -16,7 +16,7 @@ global.window = {
   },
 };
 
-export function assertStorage(src) {
+export default function (src) {
   return () => {
     const prefix = '@@redux-page-scope/';
     const expect = Object.keys(src).reduce((result, key) => {

@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { default as pageScopeMiddleware, pageScopeReducer } from '../../src';
+import pageScopeMiddleware, { pageScopeReducer } from '../../src';
 
 export const actions = [];
 
